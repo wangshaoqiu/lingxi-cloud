@@ -8,4 +8,10 @@
 #nprogress .bar {
   background: #42b983 !important;
 }
+button:focus{
+   border:none;
+}
+:focus {
+outline: 0 !important;
+}
 </style>

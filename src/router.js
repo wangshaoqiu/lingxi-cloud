@@ -13,22 +13,42 @@ export default new Router({
       children: [
         {
           path: '/organization',
-          name: '组织架构',
-          // route level code-splitting
-          // this generates a separate chunk (about.[hash].js) for this route
-          // which is lazy-loaded when the route is visited.
+          name: '奋斗没有终点，任何时候都是一个起点。',
           component: () => import(/* webpackChunkName: "demo" */ './views/organization.vue')
         },
         {
           path: '/department',
-          name: '知识库',
+          name: '奋斗没有终点，任何时候都是一个起点。',
           component: () => import(/* webpackChunkName: "demo" */ './views/department.vue')
         },
         {
           path: '/resource',
-          name: '知识库',
+          name: '奋斗没有终点，任何时候都是一个起点。',
           component: () => import(/* webpackChunkName: "demo" */ './views/resource.vue')
-        }
+        },
+        {
+          path: '/classify',
+          component: () => import(/* webpackChunkName: "demo" */ './views/classify.vue')
+        },
+        {
+          path: '/classifyItem',
+          name: '奋斗没有终点，任何时候都是一个起点。',
+          component: () => import(/* webpackChunkName: "demo" */ './views/classifyItem.vue')
+        },
+        {
+          path: '/tags',
+          component: () => import(/* webpackChunkName: "demo" */ './views/tags.vue')
+        },
+        {
+          path: '/latest',
+          name: '奋斗没有终点，任何时候都是一个起点。',
+          component: () => import(/* webpackChunkName: "demo" */ './views/latest.vue')
+        },
+        {
+          path: '/admin',
+          name: '奋斗没有终点，任何时候都是一个起点。',
+          component: () => import(/* webpackChunkName: "demo" */ './views/admin.vue')
+        },
       ]
     },
     {

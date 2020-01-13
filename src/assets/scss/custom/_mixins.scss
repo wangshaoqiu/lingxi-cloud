@@ -19,4 +19,9 @@
 @import "../core/mixins/popover";
 .el-dialog__header{
     border-bottom: 1px solid #EEEEEE !important;
+    padding: 25px !important;
+  }
+  .noFGX .el-dialog__header{
+    border-bottom: none !important;
+    
   }

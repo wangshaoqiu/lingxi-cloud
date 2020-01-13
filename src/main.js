@@ -24,6 +24,12 @@ import ElementUI from 'element-ui';
 import './element-variables.scss'
 
 import '@/permission'
+import './assets/iconfont/iconfont.css'
+import './assets/iconfont/iconfont.js'
+
+
+import '../static/qiniu.js';
+
 
 
 

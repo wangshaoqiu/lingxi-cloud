@@ -35,6 +35,15 @@ flex-wrap: wrap;
 .ml10{
   margin-left:10px;
 }
+.ml20{
+  margin-left:20px;
+}
+.ml25{
+  margin-left:25px;
+}
+.ml30{
+  margin-left:30px;
+}
 .pd30{
   padding:30px;
 }
@@ -59,7 +68,7 @@ $--color-primary: teal;
   color:#fff;
 }
 div span text{
-  font-family:PingFangSC-Regular,PingFangSC;
+  font-family:PingFangSC-Regular,PingFangSC, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight:400;
 }
 .font14{
@@ -114,21 +123,28 @@ button{
 .el-dialog__body{
   padding:30px 0 !important;
 }
+.bodyPd0 .el-dialog__body{
+  padding:0 !important;
+}
+
 
 .el-tree--highlight-current .el-tree-node.is-current > .el-tree-node__content{
-  background-color:#fff !important;
+  background:rgba(227,241,241,1) !important;
 }
 .el-tree-node__content{
   height: 42px !important;
-  // margin-left:24px !important;
 }
-.el-tree-node__content > .el-tree-node__expand-icon{
+.ORG .el-tree-node__content > .el-tree-node__expand-icon{
   position: absolute !important;
   right: 10px !important;
 }
-.el-tree-node__label {
+.ORG .el-tree-node__label {
   padding-left: 22px;
 }
+.el-tree-node__content > label.el-checkbox{
+  margin-top: 7px;
+}
+
 .btn{
   padding: 0.45rem 1.25rem !important;
 }
@@ -138,15 +154,133 @@ button{
 .el-pager>.number{
   border-radius: 50% !important;
 }
-th,td{
-  font-size: 13px !important;
+th{
+  font-size: 14px !important;
+  color:#666666 !important;
+  font-family:PingFangSC-Medium,PingFang SC !important;
+  font-weight:500 !important;
 }
 td{
  color:#666 !important;
+ font-size: 13px !important;
 }
 .el-dropdown-menu__item:focus{
   text-decoration: underline !important;
 }
+.Font333 {
+  font-size: 14px;
+  font-family: PingFangSC-Regular, PingFang SC;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 1);
+}
+.checkPopover2{
+  background: #fff !important;
+  width:385px !important;
+height:390px !important;
+background:rgba(255,255,255,1) !important;
+box-shadow:0px 0px 8px 7px rgba(0,0,0,0.04) !important;
+border-radius:4px !important;
+padding:25px 25px 30px 25px !important;
+}
+.checkPopover{
+  padding:0 !important;
+  // margin-top: 88px !important;
+  border:0 !important;
+  box-shadow: none !important;
+}
+.el-checkbox__inner{
+  width:16px !important;
+  height: 16px !important;
+}
+.el-checkbox{
+  margin-top:7px !important
+}
+.el-upload{
+  width:100% !important;
+}
+.el-upload-dragger{
+  width:100% !important;
+  height:140px !important;
+}
+.el-drawer__body{
+  padding-bottom: 90px !important;
+  overflow-y: auto;
+}
+.el-dialog__footer{
+  padding-bottom: 50px !important;
+}
+.icon-warning{
+  position: absolute;
+  top:27px;
+  left:46px;
+}
+.labelWrap{
+  height:22px;
+  border-radius:4px;
+  border:1px solid rgba(83,180,179,1);
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  font-weight:400;
+  color:rgba(83,180,179,1);
+  text-align: center;
+  margin-right: 8px;
+  padding:0 6px;
+  }
+  button{
+    box-shadow: none !important;
+  }
+  .navbar-vertical .navbar-nav .nav-link.active{
+    background:rgba(241,250,250,1);
+    width:92.16%;
+    margin-left:3.92%;
+  }
+  .icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+  }
+  .icon-shijian-copy{
+    color:#5E72E4;
+  }
+  .icon-leimupinleifenleileibie-copy{
+    color:#53B4B3;
+  }
+  .icon-wenjian-copy{
+    color:#FB7152;
+  }
+  .icon-jiagouguanli_icox-copy{
+    color:#5E72E4;
+  }
+  .icon-biaoqian1-copy{
+    color:#53BCF5;
+  }
+  .icon-gerenzhongxin-copy{
+    color:#53B4B3;
+  }
+  .table{
+    margin-bottom:0 !important;
+  }
+
+
+
+  // admin页面下的树
+
+ .admin_page .el-input__inner{
+   border:1px solid rgba(235,238,245,1) !important;
+ }
+//  .admin_page .el-tree-node__content > .el-tree-node__expand-icon{
+//     position: relative !important;
+//     right:0 !important;
+//  }
+
+@media(max-width: 1200px){
+  .searchArea,.d-lg-inline-block{
+    opacity: 0 !important;
+  }
+}
+
 
 
 
@@ -485,7 +619,7 @@ $transition-collapse:         height .35s ease !default;
 
 // Fonts
 
-$font-family-sans-serif: Open Sans, sans-serif !default;
+$font-family-sans-serif: PingFangSC-Regular,PingFangSC !default;
 $font-family-base: $font-family-sans-serif !default;
 
 $font-size-base:              1rem !default; // Assumes the browser default, typically `16px`

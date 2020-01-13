@@ -28,14 +28,22 @@ router.beforeEach(async(to, from, next) => {
   if (hasToken) {
     if (to.path === '/login') {
       // if is logged in, redirect to the home page
-      if(ents.superAdminFlag&&ents.superAdminFlag==1){
+      if((ents.superAdminFlag&&ents.superAdminFlag==1)||(ents.adminFlag&&ents.adminFlag==1)){
         next({ path: '/' })
       } else {
-        next({ path: '/resource' })
+        next({ path: '/latest' })
       }
       
       NProgress.done()
-    } else if(to.path === '/organization') {
+    } else if(to.path === '/organization'||to.path === '/tags') {
+      if((ents.superAdminFlag&&ents.superAdminFlag==1)||(ents.adminFlag&&ents.adminFlag==1)){
+        next()
+      } else {
+        next({ path: '/404' })
+      }
+      
+      NProgress.done()
+    } else if(to.path === '/admin') {
       if(ents.superAdminFlag&&ents.superAdminFlag==1){
         next()
       } else {
@@ -44,10 +52,10 @@ router.beforeEach(async(to, from, next) => {
       
       NProgress.done()
     } else if(to.path === '/') {
-      if(ents.superAdminFlag&&ents.superAdminFlag==1){
-        next({ path: '/organization' })
+      if((ents.superAdminFlag&&ents.superAdminFlag==1)||(ents.adminFlag&&ents.adminFlag==1)){
+        next({ path: '/latest' })
       } else {
-        next({ path: '/resource' })
+        next({ path: '/latest' })
       }
       
       NProgress.done()

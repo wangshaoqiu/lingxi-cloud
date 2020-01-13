@@ -88,9 +88,9 @@
 }
 .departSelect {
   position: absolute;
-  top: 10px;
-  right: 15px;
-  width: 30px;
+  top: 8px;
+  right: 8px;
+  width: 24px;
   display:flex !important;
 }
 .custom-control {
@@ -99,11 +99,15 @@
 .more_edit {
   font-size: 12px;
   color: rgba(51, 51, 51, 1);
+   text-align: center;
+   width: 100px;
   // text-decoration: underline;
 }
 .more_del {
   font-size: 12px;
   color: rgba(51, 51, 51, 1);
+  text-align: center;
+  width: 100px;
 }
 .el-drawer__header {
   margin: 0;
@@ -131,11 +135,12 @@
   min-height: 60px;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .XHX {
   width: 50px;
   height: 4px;
-  background: rgba(94, 114, 228, 1);
+  background: #53B4B3;
   border-radius: 4px;
   position: absolute;
   bottom: 0;
@@ -227,6 +232,7 @@
   min-height: 60px;
   border-top: 1px solid rgba(238, 238, 238, 1);
   background: #fff;
+  z-index:999;
 }
 .drawer_footer {
   position: relative;
@@ -258,12 +264,13 @@ border:1px solid rgba(235,238,245,1);
   z-index: 9999 !important;
 }
 .tab1{
-  padding:20px 30px 0 30px;
+  padding:20px 0 0 0;
 
 }
 .tab1_head{
   font-size:13px;
   color:rgba(102,102,102,1);
+  padding:0 30px;
 }
 .bgmask{
   width:100%;
@@ -320,6 +327,7 @@ border:2px solid rgba(235,238,245,1);
   margin-left:30px;
   margin-top:-29px;
   line-height: 20px;
+        font-weight: 400;
 }
 .avatar:hover{
     color:#fff;
@@ -401,7 +409,24 @@ margin-bottom: 20px;
     position: absolute;
     z-index:999;
     top:14px;
-    right: 140px;
+    right: 252px;
+  }
+  .avatar{
+    background: #53B4B3;
+  }
+  .img_wrap{
+    width: 24px;
+    height: 24px;
+    background: transparent;
+    border-radius: 50%;
+
+  }
+  .img_wrap:hover{
+    background: #F0F0F0;
+  }
+  .img_wrap img{
+    width:4px;
+    height: 12px;
   }
 
 </style>
@@ -410,8 +435,9 @@ margin-bottom: 20px;
   <div>
     <base-header type="gradient-success" class="pb-6 pb-8 pt-2 pt-md-8">
       <!-- <base-button type="secondary" style="color:#53B4B3" @click="dialog2=true">上传文件</base-button> -->
-      <base-button v-if="admin==1" type="secondary" style="color:#53B4B3" @click="dialogFormVisible = true">新建文件夹</base-button>
+      <base-button  v-if="admin==1||admin2==1" type="secondary" style="color:#53B4B3" @click="dialogFormVisible = true">新建文件夹</base-button>
     </base-header>
+    <img src="../assets/images/chicken.png" class="icon-warning" alt="">
 
     <div class="searchArea">
                   <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
@@ -420,9 +446,11 @@ margin-bottom: 20px;
                                     class="input-group-alternative"
                                     alternative=""
                                     v-model="keyword"
-                                    @keyup.enter="search"
+                                    @keyup.enter.native="search"
                                     addon-right-icon="">
                             </base-input>
+                            <!-- 这个input阻止回车事件刷新页面 也就是去掉了默认的submit -->
+          <input type="text" style="opacity:0;width:0;height:0">
                             </div>
                 </form>
                 </div>
@@ -445,8 +473,9 @@ margin-bottom: 20px;
                 <!-- <base-checkbox class="departSelect">
                 </base-checkbox>-->
                 <div @click.stop="stopClick">
-                <el-dropdown trigger="click" class="departSelect flex justify-center" v-if="item.canOp&&admin==1">
-                  <img src="../assets/images/more2.png"  @click.stop="stopClick" />
+                <el-dropdown trigger="click" class="departSelect flex justify-center" v-if="item.canOp&&(admin==1||admin2==1)">
+                  <div class="img_wrap flex justify-center align-center"  @click.stop="stopClick"><img src="../assets/images/more3.png"  /></div>
+                  
                   <el-dropdown-menu slot="dropdown">
                     <div @click="showDialog(item.id)">
                       <el-dropdown-item class="more_edit">编辑</el-dropdown-item>
@@ -502,7 +531,7 @@ margin-bottom: 20px;
 </el-upload>
           
         </div>
-        <div class="suggest2">*建议尺寸325*235像素</div>
+        <div class="suggest2">*建议尺寸140*125像素</div>
         <el-form-item label="排序：" label-width="120px" style="margin-bottom:0;">
           <el-input v-model="newFile.showOrder" autocomplete="off" style="width:200px;"></el-input>
         </el-form-item>
@@ -510,8 +539,8 @@ margin-bottom: 20px;
       <div class="suggest2" style="margin-top:0;margin-bottom: 0;">*排序依照数字由低到高依次排列</div>
       <div slot="footer" class="dialog-footer flex justify-center">
 
-        <base-button  type="secondary" @click="cancelAddFile" style="color:#666;font-weight:500;">取消</base-button>
-     <base-button  type="primary"  @click="sureAddFile" style="margin-left:55px;font-weight:500;">确认</base-button>
+        <el-button  @click="cancelAddFile" style="background: rgba(238,238,238,1);color:#666;font-weight:500;">取消</el-button>
+     <el-button  type="primary"  @click="sureAddFile" style="margin-left:55px;font-weight:500;">确认</el-button>
       </div>
     </el-dialog>
 <!-- ==end==新建文件夹dialog -->
@@ -519,6 +548,7 @@ margin-bottom: 20px;
 
 
 <!-- ==start==删除文件夹dialog -->
+<div class="noFGX">
 <el-dialog
   title="确认删除该文件夹吗？"
   :visible.sync="centerDialogVisible"
@@ -529,11 +559,12 @@ margin-bottom: 20px;
   
   <span slot="footer" class="dialog-footer">
 
-    <base-button  type="secondary" @click="centerDialogVisible = false" style="color:#666;font-weight:500;">取消</base-button>
-     <base-button  type="primary"  @click="sureDelDir" style="margin-left:55px;font-weight:500;">确认</base-button>
+    <el-button  @click="centerDialogVisible = false" style="background: rgba(238,238,238,1);color:#666;font-weight:500;">取消</el-button>
+     <el-button  type="primary"  @click="sureDelDir" style="margin-left:55px;font-weight:500;">确认</el-button>
 
   </span>
 </el-dialog>
+</div>
 <!-- ==end==删除文件夹dialog -->
 
 
@@ -602,8 +633,8 @@ margin-bottom: 20px;
                     </div>
           </el-upload>
           </div>
-          <div class="suggest">*建议尺寸325*235像素</div>
-          <el-form-item class="mt20" label="排序：" style="margin-bottom:0">
+          <div class="suggest">*建议尺寸140*125像素</div>
+          <el-form-item class="mt20" label="排序:" style="margin-bottom:0;margin-left: 13px;">
             <el-input v-model="selectDir.showOrder" autocomplete="off" style="width:50%"></el-input>
           </el-form-item>
           <div class="suggest">排列顺序依照数字由低到高依次升序排列，例如：1，2，3，4...</div>
@@ -613,28 +644,28 @@ margin-bottom: 20px;
         <div v-if="tab==1" class="tab1">
           <div class="tab1_head">专属文件：组内成员可查阅专属该文件夹的文件，即在上传文件时资料权限设置为“该文件夹相关人员可见”的文件。</div>
           
-          <base-button class="mt30" type="primary" size="sm" @click="showAddForm1">添加成员</base-button>
-          <base-button v-if="exclusiveArr.length>0" class="mt30" outline type="primary" size="sm" @click="showMuchDel">移除</base-button>
-          <div v-if="exclusiveArr.length>0" class="card shadow mt25" :class="type === 'dark' ? 'bg-default': ''">
-                    <div class="table-responsive">
+          <el-button class="mt30" style="margin-top:30px;margin-left:30px;" type="primary" size="medium" @click="showAddForm1">添加成员</el-button>
+          <el-button v-if="exclusiveArr.length>0" style="background:#fff;color:#53B4B3" class="mt30"  type="primary" size="medium" @click="showMuchDel">移除</el-button>
+          
+                    <div class="table-responsive mt25" v-if="exclusiveArr.length>0">
                         <base-table class="table align-items-center table-flush" :class="type === 'dark' ? 'table-dark': ''" :thead-classes="type === 'dark' ? 'thead-dark': 'thead-light'" tbody-classes="list" :data="exclusiveArr">
                             <template slot="columns">
-                        <th>
-                            <base-checkbox v-model="checkboxes">
-                            </base-checkbox>
+                        <th style="padding: 0 0 0 25px;">
+                            <el-checkbox v-model="checkboxes">
+                            </el-checkbox>
                         </th>
                         
-                      <th>*</th>
+                      <th style="padding: 0">&nbsp;&nbsp;&nbsp;&nbsp;*</th>
                       <th>姓名</th>
                       <th>部门</th>
 </template>
 
 <template slot-scope="{row}">
-    <th scope="row">
-        <base-checkbox v-model="row.checked">
-        </base-checkbox>
+    <th scope="row" style="padding: 15px 0px 15px 25px;">
+        <el-checkbox v-model="row.checked">
+        </el-checkbox>
     </th>
-    <td scope="row">
+    <td scope="row" style="padding: 0">
         <a href="#!" class="avatar rounded-circle">
        {{row.nickname}}
        </a>
@@ -643,7 +674,7 @@ margin-bottom: 20px;
         {{row.name}}
     </td>
     <td class="budget">
-        {{row.orgName}}
+        {{row.parentOrgName}} <span v-if="row.parentOrgName&&row.orgName!==null">|</span> {{row.orgName}}
     </td>
 </template>
 
@@ -651,35 +682,34 @@ margin-bottom: 20px;
     </div>
 
 
-  </div>
           
         </div>
 
         <div v-if="tab==2" class="tab1">
           <div class="tab1_head">保密文件：组内成员可查阅本文件夹下的保密文件，即在上传文件时资料权限设置为“该文件夹保密文件”的文件。</div>
           
-          <base-button class="mt30" type="primary" size="sm" @click="showAddForm2">添加成员</base-button>
-          <base-button v-if="privacyArr.length>0" class="mt30" outline type="primary" size="sm" @click="showMuchDel2">移除</base-button>
-          <div v-if="privacyArr.length>0" class="card shadow mt25" :class="type === 'dark' ? 'bg-default': ''">
-                    <div class="table-responsive">
+          <el-button  class="mt30" style="margin-top:30px;margin-left:30px;" type="primary" size="medium" @click="showAddForm2">添加成员</el-button>
+          <el-button v-if="privacyArr.length>0" style="background:#fff;color:#53B4B3" class="mt30"  type="primary" size="medium" @click="showMuchDel2">移除</el-button>
+          
+                    <div class="table-responsive mt25" v-if="privacyArr.length>0">
                         <base-table class="table align-items-center table-flush" :class="type === 'dark' ? 'table-dark': ''" :thead-classes="type === 'dark' ? 'thead-dark': 'thead-light'" tbody-classes="list" :data="privacyArr">
                             <template slot="columns">
-                        <th>
-                            <base-checkbox v-model="checkboxes2">
-                            </base-checkbox>
+                        <th style="padding: 0 0 0 25px;">
+                            <el-checkbox v-model="checkboxes2">
+                            </el-checkbox>
                         </th>
                         
-                      <th>*</th>
+                      <th style="padding: 0">&nbsp;&nbsp;&nbsp;&nbsp;*</th>
                       <th>姓名</th>
                       <th>部门</th>
 </template>
 
 <template slot-scope="{row}">
-    <th scope="row">
-        <base-checkbox  v-model="row.checked">
-        </base-checkbox>
+    <th scope="row" style="padding: 15px 0px 15px 25px;">
+        <el-checkbox  v-model="row.checked">
+        </el-checkbox>
     </th>
-    <td scope="row">
+    <td scope="row" style="padding: 0">
         <a href="#!" class="avatar rounded-circle">
        {{row.nickname}}
        </a>
@@ -688,7 +718,7 @@ margin-bottom: 20px;
         {{row.name}}
     </td>
     <td class="budget">
-        {{row.orgName}}
+         {{row.parentOrgName}} <span v-if="row.parentOrgName&&row.orgName!==null">|</span> {{row.orgName}}
     </td>
 </template>
 
@@ -696,15 +726,14 @@ margin-bottom: 20px;
     </div>
 
 
-  </div>
 
         </div>
 
 
         <div class="drawer_footer_box">
           <div class="drawer_footer flex align-center justify-center">
-            <base-button  type="secondary" @click="cancelEdit" style="color:#666;font-weight:500;">取消</base-button>
-            <base-button  type="primary" @click="sureEdit" style="margin-left:55px;font-weight:500;">确认</base-button>
+            <el-button  @click="cancelEdit" style="background: rgba(238,238,238,1);color:#666;font-weight:500;">取消</el-button>
+            <el-button  type="primary" @click="sureEdit" style="margin-left:55px;font-weight:500;">确认</el-button>
           </div>
         </div>
       </div>
@@ -741,8 +770,7 @@ margin-bottom: 20px;
 <div class="selectForm1_left">
   <div class="selectForm1_title">已选成员</div>
   <div class="selected_box">
-    <div class="card" :class="type === 'dark' ? 'bg-default': ''">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="margin-top:-2px">
                         <base-table class="table align-items-center table-flush" :class="type === 'dark' ? 'table-dark': ''" :thead-classes="type === 'dark' ? 'thead-dark': 'thead-light'" tbody-classes="list" :data="selectedMember">
                             <template slot="columns">
                        
@@ -763,14 +791,13 @@ margin-bottom: 20px;
     </div>
 
 
-  </div>
 
   </div>
 </div>
 
   <div class="select_footer flex justify-center">
-    <base-button  type="secondary" @click="cancelSelect" style="color:#666;font-weight:500;">取消</base-button>
-    <base-button  type="primary" @click="sureSelect" style="margin-left:55px;font-weight:500;">确认</base-button>
+    <el-button   @click="cancelSelect" style="background: rgba(238,238,238,1);color:#666;font-weight:500;">取消</el-button>
+    <el-button  type="primary" @click="sureSelect" style="margin-left:55px;font-weight:500;">确认</el-button>
   </div>
 
     </div>
@@ -811,8 +838,7 @@ margin-bottom: 20px;
 <div class="selectForm1_left">
   <div class="selectForm1_title">已选成员</div>
   <div class="selected_box">
-    <div class="card" :class="type === 'dark' ? 'bg-default': ''">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="margin-top:-2px">
                         <base-table class="table align-items-center table-flush" :class="type === 'dark' ? 'table-dark': ''" :thead-classes="type === 'dark' ? 'thead-dark': 'thead-light'" tbody-classes="list" :data="selectedMember2">
                             <template slot="columns">
                        
@@ -833,14 +859,13 @@ margin-bottom: 20px;
     </div>
 
 
-  </div>
 
   </div>
 </div>
 
   <div class="select_footer flex justify-center">
-    <base-button  type="secondary" @click="cancelSelect2" style="color:#666;font-weight:500;">取消</base-button>
-    <base-button  type="primary" @click="sureSelect2" style="margin-left:55px;font-weight:500;">确认</base-button>
+    <el-button  @click="cancelSelect2" style="background: rgba(238,238,238,1);color:#666;font-weight:500;">取消</el-button>
+    <el-button  type="primary" @click="sureSelect2" style="margin-left:55px;font-weight:500;">确认</el-button>
   </div>
 
     </div>
@@ -855,8 +880,8 @@ margin-bottom: 20px;
       <div class="delMt">确认移除该成员吗？</div>
       <div class="delContent">移除后，该成员将无法查看相关权限文件</div>
       <div class="delBtns flex justify-center">
-        <base-button  type="secondary" @click="delMemberDialog = false" style="color:#666;font-weight:500;">取消</base-button>
-    <base-button  type="primary" @click="sureDM" style="margin-left:55px;font-weight:500;">确认</base-button>
+        <el-button   @click="delMemberDialog = false" style="background: rgba(238,238,238,1);color:#666;font-weight:500;">取消</el-button>
+    <el-button  type="primary" @click="sureDM" style="margin-left:55px;font-weight:500;">确认</el-button>
       </div>
     </div>
 
@@ -866,8 +891,8 @@ margin-bottom: 20px;
       <div class="delMt">确认移除该成员吗？</div>
       <div class="delContent">移除后，该成员将无法查看相关权限文件</div>
       <div class="delBtns flex justify-center">
-        <base-button  type="secondary" @click="delMemberDialog2 = false" style="color:#666;font-weight:500;">取消</base-button>
-    <base-button  type="primary" @click="sureDM2" style="margin-left:55px;font-weight:500;">确认</base-button>
+        <el-button  @click="delMemberDialog2 = false" style="background: rgba(238,238,238,1);color:#666;font-weight:500;">取消</el-button>
+    <el-button  type="primary" @click="sureDM2" style="margin-left:55px;font-weight:500;">确认</el-button>
       </div>
     </div>
 
@@ -928,7 +953,8 @@ export default {
       delMemberDialog: false,
       delMemberDialog2: false,
       keyword: '',
-      admin: ''
+      admin: '',
+      admin2: ''
 
     };
   },
@@ -942,6 +968,7 @@ export default {
     },
   created() {
     this.admin = JSON.parse(getStorage("ents")).superAdminFlag
+    this.admin2 = JSON.parse(getStorage("ents")).adminFlag
     this.baseURL = axios.defaults.baseURL
     this.actionUrl = 'http://tapi.neets.cc/tm/v1/image-utils/ext/upload'
     this.getTopDir()
@@ -973,11 +1000,6 @@ export default {
     },
     // 确认删除成员
       sureDM() {
-        // for(let i=0;i<this.exclusiveArr.length;i++){
-        //   if(this.exclusiveArr[i].checked){
-        //     this.exclusiveArr[i].id = null
-        //   }
-        // }
         const arr = []
         for(let i=0;i<this.exclusiveArr.length;i++){
           if(!this.exclusiveArr[i].checked){
@@ -1000,12 +1022,6 @@ export default {
           type: 'success'
         });
         
-        }).catch(()=>{
-          this.$notify({
-          title: '失败',
-          message: '移除失败',
-          type: 'warning'
-        });
         })
 
       // 刷新列表
@@ -1046,12 +1062,6 @@ export default {
           type: 'success'
         });
         
-        }).catch(()=>{
-          this.$notify({
-          title: '失败',
-          message: '移除失败',
-          type: 'warning'
-        });
         })
 
 
@@ -1313,13 +1323,7 @@ export default {
           type: 'success'
         });
         this.getTopDir()
-      }).catch(()=>{
-          this.$notify({
-          title: '失败',
-          message: '删除失败',
-          type: 'warning'
-        });
-        })
+      })
     },
     showDelDialog(id) {
       this.centerDialogVisible = true
@@ -1345,13 +1349,7 @@ export default {
 
         this.getTopDir()
         
-      }).catch(()=>{
-          this.$notify({
-          title: '失败',
-          message: '编辑文件夹失败',
-          type: 'warning'
-        });
-        })
+      })
 
         // 2编辑专属文件
         const arr = []
@@ -1364,12 +1362,6 @@ export default {
         editExclusive(this.editId,param).then(()=>{
           
         
-        }).catch(()=>{
-          this.$notify({
-          title: '失败',
-          message: '编辑文件夹失败',
-          type: 'warning'
-        });
         })
 
         // 3编辑私密文件
@@ -1384,12 +1376,6 @@ export default {
         editPrivacy(this.editId,param2).then(()=>{
           
         
-        }).catch(()=>{
-          this.$notify({
-          title: '失败',
-          message: '编辑文件夹失败',
-          type: 'warning'
-        });
         })
 
 
@@ -1440,18 +1426,7 @@ export default {
         coverUrl: ''
         }
         this.getTopDir()
-      }).catch(()=>{
-          this.$notify({
-          title: '失败',
-          message: '新建文件夹失败',
-          type: 'warning'
-        });
-        this.newFile={
-          name: "",
-        showOrder: "",
-        coverUrl: ''
-        }
-        })
+      })
 
     },
     // 获取顶级组织

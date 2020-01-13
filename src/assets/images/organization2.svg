@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="34px" viewBox="0 0 66 34" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>组织架构logo复制</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="111.400972%" x2="50%" y2="0%" id="linearGradient-1">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#53B4B3" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="组织架构logo复制" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="编组" transform="translate(19.000000, 6.000000)">
+            <rect id="矩形复制" fill="url(#linearGradient-1)" opacity="0.199753534" x="10" y="1" width="11" height="8" rx="3.33333333"></rect>
+            <rect id="矩形复制-6" fill="url(#linearGradient-1)" opacity="0.199753534" x="18" y="14" width="11" height="8" rx="3.33333333"></rect>
+            <rect id="矩形复制-7" fill="url(#linearGradient-1)" opacity="0.199753534" x="2" y="14" width="11" height="8" rx="3.33333333"></rect>
+            <rect id="矩形" fill="#2BC4CE" x="8" y="0" width="11" height="8" rx="3.33333333"></rect>
+            <rect id="矩形复制-2" fill="#2BC4CE" x="16" y="13" width="10" height="8" rx="3.33333333"></rect>
+            <rect id="矩形复制-3" fill="#2BC4CE" x="0" y="13" width="10" height="8" rx="3.33333333"></rect>
+            <rect id="矩形" fill="#2BC4CE" x="12" y="7" width="2" height="5"></rect>
+            <path d="M5,10 L21,10 C21.5522847,10 22,10.4477153 22,11 L22,11 C22,11.5522847 21.5522847,12 21,12 L5,12 C4.44771525,12 4,11.5522847 4,11 L4,11 C4,10.4477153 4.44771525,10 5,10 Z" id="矩形" fill="#2BC4CE"></path>
+            <path d="M21,10 L21,10 C21.5522847,10 22,10.4477153 22,11 L22,13 C22,13.5522847 21.5522847,14 21,14 L21,14 C20.4477153,14 20,13.5522847 20,13 L20,11 C20,10.4477153 20.4477153,10 21,10 Z" id="矩形复制-4" fill="#2BC4CE"></path>
+            <path d="M5,10 L5,10 C5.55228475,10 6,10.4477153 6,11 L6,13 C6,13.5522847 5.55228475,14 5,14 L5,14 C4.44771525,14 4,13.5522847 4,13 L4,11 C4,10.4477153 4.44771525,10 5,10 Z" id="矩形复制-5" fill="#2BC4CE"></path>
+        </g>
+    </g>
+</svg>

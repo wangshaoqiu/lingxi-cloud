@@ -98,7 +98,7 @@ input:-ms-input-placeholder {
 .getCode2 {
   width: 86px;
   height: 32px;
-  background: rgba(94, 114, 228, 1);
+  background: #53B4B3;
   border-radius: 4px;
   position: absolute;
   right: 15px;
@@ -128,7 +128,7 @@ input:-ms-input-placeholder {
       <div class="logo">
         <img src="../assets/images/logo1.png">
       </div>
-      <div class="welcome">后台管理欢迎你</div>
+      <div class="welcome">工作云平台</div>
       <div class="inputBox">
         <input type="text" maxlength="11" placeholder="请输入手机号" v-model="phone" class="phone_input" />
       </div>
@@ -186,13 +186,7 @@ export default {
             }
           }, 1000);
         })
-        .catch(() => {
-          this.$message({
-            message: "发送失败",
-            type: "error",
-            duration: 2000
-          });
-        });
+        
     },
     login() {
       if (this.code == "") {
@@ -235,13 +229,7 @@ export default {
             NProgress.done();
           }
         })
-        .catch(() => {
-          this.$message({
-            message: "验证码错误",
-            type: "error",
-            duration: 2000
-          });
-        });
+        
     }
   }
 };

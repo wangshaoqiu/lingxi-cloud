@@ -7,7 +7,7 @@
          ]">
         <div :class="containerClasses">
             <slot name="brand">
-                <div class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block">
+                <div class="mb-0 text-white text-uppercase d-none d-lg-inline-block">
                     {{$route.name}}
                 </div>
             </slot>
@@ -84,5 +84,11 @@
     }
   };
 </script>
-<style>
+<style scoped>
+.d-lg-inline-block{
+  font-size:18px;
+font-family:PingFangSC-Regular,PingFang SC;
+font-weight:400;
+margin-left:35px;
+}
 </style>

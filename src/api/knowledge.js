@@ -27,14 +27,23 @@ export const editPrivacy  = (dirId,param) => put('/kb/dirs-mc/top/'+dirId+'/file
 
 //  获取上传策略
 export const getStrategy = (param) => get('/kb/files-mc/upload-strategy',param)
+//  获取上传token
+export const getStrategy2 = () => get('/kb/files-mc/upload-token')
 // 上传文件
 export const uploadFile = (param) => post('/kb/files-mc/upload', param)
 // 更新文件
-export const updateFile = (fileId,param) => put('/kb/files-mc/'+fileId, param)
+export const updateFile = (fileId,param) => put('/kb/files-mc/'+fileId+'/viz-type', param)
 // 删除文件
 export const delFile = (fileId) => Delete('/kb/files-mc/'+fileId)
+// 更新文件标签
+export const updateTag = (fileId,param) => put('/kb/files-mc/'+fileId+'/labels', param)
+//  最近上传的文件
+export const latestFile = (param) => get('/kb/files-mc/latest',param)
 
 
+
+//  文件标签条件聚合
+export const getTagArr = (param) => get('/kb/files-mc/labels/cond-aggr',param)
 
 
 //  搜索

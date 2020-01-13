@@ -19,6 +19,8 @@
     "flatpickr": "4.5.7",
     "nouislider": "13.1.4",
     "nprogress": "^0.2.0",
+    "plupload": "^2.3.6",
+    "qiniu-js": "^2.5.5",
     "register-service-worker": "1.6.2",
     "vue": "2.6.6",
     "vue-chartjs": "3.4.2",

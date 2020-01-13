@@ -2,8 +2,9 @@
 /* eslint-disable no-console */
 import axios from 'axios'
 // import { Message } from 'element-ui'
+import ElementUI from 'element-ui';
 // import store from '@/store'
-import { getToken,setToken,getStorage} from './auth'
+import { getToken,setToken,getStorage,removeToken,removeStorage} from './auth'
 // import router from '../router'
 import qs from 'qs'
 // qs是为了传递参数为数组格式的时候格式化参数，非常有用
@@ -32,13 +33,13 @@ axios.interceptors.request.use(config => {
     // config.headers['Authorization'] = Token // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
     config.headers = {
       'Content-Type': 'application/json;charset=UTF-8',
-      'X-App-Version':'pc:ent-sass:wechat:0.0.1',
+      'X-App-Version':'pc:samon-sass:wechat:0.0.1',
       'Authorization': Token
     }
   } else {
     config.headers = {
       'Content-Type': 'application/json;charset=UTF-8',
-      'X-App-Version':'pc:ent-sass:wechat:0.0.1'
+      'X-App-Version':'pc:samon-sass:wechat:0.0.1'
     }
   }
   const ents = JSON.parse(getStorage('ents'))
@@ -49,7 +50,7 @@ axios.interceptors.request.use(config => {
   return config
 }, error => {
   // Do something with request error
-  console.log(error) // for debug
+  // console.log(error) // for debug
   Promise.reject(error)
 })
 
@@ -57,14 +58,16 @@ axios.interceptors.request.use(config => {
 axios.interceptors.response.use(
   
   response => {
-    // if (response.data.code === 401) {
-    //   router.push({
-    //     path: '/login',
-    //     querry: {
-    //       redirect: router.currentRoute.fullPath
-    //     }
-    //   })
-    // }
+    // console.log(response.status)
+    if (response.status === 401) {
+      
+      removeToken()
+        removeStorage('ents')
+        removeStorage('userInfo')
+      this.$router.push({
+        path: '/login'
+      })
+    }
     if (response.headers['x-token']) {
       const token = response.headers['x-token']
     setToken(token)
@@ -72,12 +75,23 @@ axios.interceptors.response.use(
     return response
   },
   error => {
+    // console.log(error.response)
     // console.log('err' + error) // for debug
     // Message({
-    //   message: error.message,
+    //   message: error.response.data.message,
     //   type: 'error',
     //   duration: 5 * 1000
     // })
+    ElementUI.Notification({
+      title: '错误',
+      message: error.response.data.message,
+      type: 'error'
+  });
+      // this.$notify({
+      //     title: '失败',
+      //     message: '添加失败',
+      //     type: 'warning'
+      //   });
     return Promise.reject(error)
   }
 )
@@ -132,6 +146,7 @@ export function post(url, params) {
         resolve(res)
       })
       .catch(err => {
+        // console.log(err.response)
         reject(err)
       })
   })

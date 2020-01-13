@@ -6,23 +6,29 @@
       title="Argon"
       autoClose
     >
+
+
       <template  slot="links">
+
+        <sidebar-item v-if="path!=='/admin'&&path!=='/organization'" :link="{name: '最新文件', icon: 'iconfont icon-shijian-copy', path: '/latest'}"/>
+        <sidebar-item v-if="path!=='/admin'&&path!=='/organization'" :link="{name: '分类', icon: 'iconfont icon-leimupinleifenleileibie-copy', path: '/classify'}"/>
+       
+        <sidebar-item v-if="path!=='/admin'&&path!=='/organization'" :link="{name: '部门文件', icon: 'iconfont icon-wenjian-copy', path: '/resource'}"/>
+        
+        <div class="FGX" v-if="path!=='/admin'&&path!=='/organization'"></div>
+
+
         <sidebar-item
-        v-if="admin==1"
+        v-if="((admin==1||admin2==1)&&(path=='/admin'||path=='/organization')) "
           :link="{
             name: '组织架构',
-            icon: 'ni ni-building text-primary',
+            icon: 'iconfont icon-jiagouguanli_icox-copy',
             path: '/organization'
           }"
         />
 
-        <!-- <sidebar-item :link="{name: '角色管理', icon: 'ni ni-single-02 text-yellow ', path: '/role'}"/> -->
-        <sidebar-item :link="{name: '知识库', icon: 'ni ni-archive-2 text-orange', path: '/resource'}"/>
-        <!-- <sidebar-item :link="{name: '分享模板', icon: 'ni ni-planet text-info', path: '/share'}"/> -->
-        <!-- <sidebar-item :link="{name: 'Tables', icon: 'ni ni-bullet-list-67 text-red', path: '/tables'}"/>
-        <sidebar-item :link="{name: 'Login', icon: 'ni ni-key-25 text-info', path: '/login'}"/>
-        <sidebar-item :link="{name: 'Register', icon: 'ni ni-circle-08 text-pink', path: '/register'}"/> -->
-
+        <sidebar-item v-if="((admin==1||admin2==1) && (path!=='/admin'&&path!=='/organization'))" :link="{name: '标签管理', icon: 'iconfont icon-biaoqian1-copy', path: '/tags'}"/>
+        <sidebar-item v-if="admin==1&&(path=='/admin'||path=='/organization')" :link="{name: '管理员设置', icon: 'iconfont icon-gerenzhongxin-copy', path: '/admin'}"/>
       </template>
 
 
@@ -60,13 +66,24 @@
     data() {
       return {
         sidebarBackground: 'vue', //vue|blue|orange|green|red|primary
-        admin: ''
+        admin: '',
+        admin2: '',
+        path: ''
       };
     },
+    watch:{
+      '$route.path':function(path) {
+        this.path = path
+      }
+    },
     created() {
+      this.path = this.$route.path
       this.admin = JSON.parse(getStorage("ents")).superAdminFlag
+      this.admin2 = JSON.parse(getStorage("ents")).adminFlag
+      
     },
     methods: {
+      
       toggleSidebar() {
         if (this.$sidebar.showSidebar) {
           this.$sidebar.displaySidebar(false);
@@ -76,4 +93,15 @@
   };
 </script>
 <style lang="scss">
+.FGX{
+  width:100%;
+height:1px;
+background:rgba(235,238,245,1);
+-webkit-transform-origin: 0 0;
+		transform-origin: 0 0;
+		-webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    margin-top:35px;
+    margin-bottom: 35px;
+}
 </style>
