@@ -87,13 +87,13 @@ border:1px solid rgba(83,180,179,0.3);
           <div class="checkArea flex">
 
             <div class="checkItem flex justify-center flex-column" @click="goto(0)">
-              <img src="@/assets/images/BPM2.svg" alt="">
-              <div class=" Font333">Cloud BPM</div>
+              <img src="@/assets/images/lingxiBPM.svg" alt="">
+              <div class=" Font333">灵犀BPM</div>
             </div>
 
             <div class="checkItem flex justify-center flex-column" @click="goto(1)">
-              <img src="@/assets/images/knowledge2.svg" alt="">
-              <div class=" Font333">知识库</div>
+              <img src="@/assets/images/lingxi2.svg" alt="">
+              <div class=" Font333">灵犀云平台</div>
             </div>
             <div v-if="hasPermission" class="checkItem flex justify-center flex-column" @click="goto(2)">
               <img src="@/assets/images/organization2.svg" alt="">
@@ -175,7 +175,7 @@ import { getStorage,removeToken,removeStorage } from "../utils/auth";
       this.showPanel = false
       if (index === 0) {
         
-        window.open('http://samon-industrial-cloud.xiniu.pro/#/projects', '_blank')
+        window.open('http://www.xiniu.pro/#/projects', '_blank')
       } else if (index === 1) {
         if(this.path=='/organization'||this.path=='/admin'){
           window.open('http://xiniu.wiki/#/latest', '_blank')
@@ -188,7 +188,6 @@ import { getStorage,removeToken,removeStorage } from "../utils/auth";
         if(this.path=='/organization'||this.path=='/admin'){
           this.$router.push('/organization')
         } else {
-          console.log('mark')
           window.open('http://xiniu.wiki/#/organization', '_blank')
         }
       }

@@ -119,7 +119,7 @@
     props: {
       logo: {
         type: String,
-        default: 'img/brand/logo2.png',
+        default: 'img/brand/lingxi1.svg',
         description: 'Sidebar app logo'
       },
       autoClose: {

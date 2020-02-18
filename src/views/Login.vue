@@ -13,20 +13,20 @@
   background: rgba(247, 250, 252, 1);
   box-shadow: 0px 0px 11px 6px rgba(0, 0, 0, 0.03);
   border-radius: 4px;
-  margin: 0 auto;
-  margin-top: 18.2vh;
-  padding: 70px 0 97px 0;
+  /* margin: 0 auto; */
+  /* margin-top: 18.2vh; */
+  padding: 50px 0 97px 0;
   max-width: 415px;
   min-width: 340px;
 }
 .logo {
-  width: 45.6%;
-  height: 7%;
+  width: 80px;
+  height: 80px;
   margin: 0 auto;
 }
 .logo img {
-  width: 100%;
-  height: 100%;
+  width: 80px;
+  height: 80px;
 }
 .welcome {
   font-size: 25px;
@@ -35,8 +35,8 @@
   color: rgba(102, 102, 102, 1);
   width: 100%;
   text-align: center;
-  margin-top: 30px;
-  margin-bottom: 55px;
+  margin-top: 12px;
+  margin-bottom: 45px;
 }
 .inputBox {
   background: rgba(255, 255, 255, 1);
@@ -123,12 +123,12 @@ input:-ms-input-placeholder {
 }
 </style>
 <template>
-  <div class="bg">
+  <div class="bg flex justify-center align-center">
     <div class="loginForm">
       <div class="logo">
-        <img src="../assets/images/logo1.png">
+        <img src="../assets/images/lingxi2.svg">
       </div>
-      <div class="welcome">工作云平台</div>
+      <div class="welcome">灵犀云平台</div>
       <div class="inputBox">
         <input type="text" maxlength="11" placeholder="请输入手机号" v-model="phone" class="phone_input" />
       </div>
